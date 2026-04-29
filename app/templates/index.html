@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weather Search App</title>
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            margin-top: 50px;
+            background-color: #f4f4f4;
+        }
+
+        input {
+            padding: 10px;
+            width: 250px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .weather-box {
+            margin-top: 30px;
+            display: inline-block;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px #ccc;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🌤 Weather Search App</h1>
+
+    <form action="/search" method="get">
+        <input type="text" name="city" placeholder="Enter city name" required>
+        <button type="submit">Search</button>
+    </form>
+
+    {% if weather %}
+        {% if weather.error %}
+            <h3 style="color:red;">{{ weather.error }}</h3>
+        {% else %}
+            <div class="weather-box">
+                <h2>{{ weather.city }}, {{ weather.country }}</h2>
+                <p>🌡 Temperature: {{ weather.temperature_celsius }} °C</p>
+                <p>💨 Wind Speed: {{ weather.windspeed }} km/h</p>
+                <p>🧭 Wind Direction: {{ weather.winddirection }}°</p>
+                <p>🕒 Time: {{ weather.time }}</p>
+            </div>
+        {% endif %}
+    {% endif %}
+
+</body>
+</html>
